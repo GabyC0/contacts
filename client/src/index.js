@@ -3,11 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Form from './components/Form';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <Routes>
+      <Route path='/' element={<App />}/>
+      <Route path='/add' element={<Form />}/>
+    </Routes>
+  </Router>,
+
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

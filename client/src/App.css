@@ -1,3 +1,48 @@
+ul {
+  list-style-type: none;
+}
+
+li {
+  border: 1px black;
+  background-color: #cce5ff;
+  width: 175px;
+  /* margin: auto; */
+}
+
+ul li {
+  border: 1px solid #ddd;
+  margin: 2px;
+  border-radius: 12px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin-left: 50px;
+  background-color:#cce5ff ;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+
 .App {
   text-align: center;
 }

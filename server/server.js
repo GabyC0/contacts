@@ -34,12 +34,12 @@ app.get('/api/contacts', cors(), async (req, res) => {
 });
 
 //create the POST request
-app.post('/api/contacts', cors(), async (req, res) => {
-    const newContact = { firstname: req.body.firstname, lastname: req.body.lastname, mobile: req.body.mobile }
+app.post('/api/contacts/add', cors(), async (req, res) => {
+    const newContact = { firstname: req.body.firstname, lastname: req.body.lastname, mobile: req.body.mobile, email: req.body.email, address: req.body.address, note: req.body.note }
     console.log([newContact.firstname, newContact.lastname]);
     const result = await db.query(
-        'INSERT INTO contacts(firstname, lastname, mobile) VALUES($1, $2, $3) RETURNING *',
-        [newContact.firstname, newContact.lastname, newContact.mobile]
+        'INSERT INTO contacts(firstname, lastname, mobile, email, address, note) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+        [newContact.firstname, newContact.lastname, newContact.mobile, newContact.email, newContact.address, newContact.note]
     );
     console.log(result.rows[0]);
     res.json(result.rows[0]);
@@ -49,3 +49,4 @@ app.post('/api/contacts', cors(), async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
+
