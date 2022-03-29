@@ -71,7 +71,8 @@ const Form = (props) => {
         <div>
             <Navbar />
         
-        
+       <h2 className="h2-center">Add new Contact</h2> 
+        <div className="center">
         <form onSubmit={handleSubmit}>
             <fieldset>
                 <label>First Name</label>
@@ -122,7 +123,7 @@ const Form = (props) => {
                     onChange={handleAddressChange}
                 />
                 <br/>
-                <label>Note:</label>
+                <label>Note</label>
                 <input
                     type="text"
                     id="add-contact-note"
@@ -133,6 +134,7 @@ const Form = (props) => {
             </fieldset>
             <button type="submit">Add</button>
         </form>
+        </div>
         </div>
     );
 };
