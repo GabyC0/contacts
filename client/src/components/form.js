@@ -71,7 +71,7 @@ const Form = (props) => {
         <div>
             <Navbar />
         
-       <h2 className="h2-center">Add new Contact</h2> 
+       <h2 className="h2-center">Add New Contact</h2> 
         <div className="center">
         <form onSubmit={handleSubmit}>
             <fieldset>

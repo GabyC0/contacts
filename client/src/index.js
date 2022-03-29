@@ -5,12 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Form from './components/Form';
+import {Delete} from './components/Delete';
+import { SpecificContact } from './components/SpecificContact';
+import {Edit } from './components/Edit';
 
 ReactDOM.render(
   <Router>
     <Routes>
       <Route path='/' element={<App />}/>
       <Route path='/add' element={<Form />}/>
+      <Route path='/delete' element={<Delete />}/>
+      <Route path='/specific' element={<SpecificContact />}/>
+      <Route path='/edit' element={<Edit/>}/>
     </Routes>
   </Router>,
 

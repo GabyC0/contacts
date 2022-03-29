@@ -45,6 +45,27 @@ app.post('/api/contacts/add', cors(), async (req, res) => {
     res.json(result.rows[0]);
 });
 
+app.delete('/api/contacts/:contactId', cors(), async (req, res) => {
+    const contactId = req.params.contactId;
+    await db.query('DELETE FROM contacts WHERE id=$1', [contactId]);
+    res.status(200).end();
+})
+
+app.put('/api/contacts/:contactId', cors(), async (req, res) => {
+    const contactId = req.params.id;
+    const updatedContact = { id: req.body.id, firstname: req.body.firstname, lastname: req.body.lastname, mobile: req.body.mobile, email: req.body.email, address: req.body.address, note: req.body.note }
+    const query = `UPDATE contacts SET lastname=$1, firstname=$2 WHERE id=${contactId} RETURNING *`;
+    const values = [updatedContact.lastname, updatedContact.firstname];
+    try{
+        const updated = await db.oneOrNone(query, values);
+        console.log('updated', updated);
+        res.send(updated);
+    } catch (e) {
+        console.log('error', e);
+        return res.status(400).json({e});
+    }
+})
+
 // console.log that your server is up and running
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
