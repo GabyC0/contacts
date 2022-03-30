@@ -13,6 +13,7 @@ function App() {
       <Navbar />
       <Contacts />
       {/* <button>+</button> */}
+      {/* <Outlet/> */}
     </div>
   );
 }

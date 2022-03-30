@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //import Form from "./Form";
 //import { Link } from 'react-router-dom'
-import {Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function Contacts() {
 
@@ -21,8 +21,6 @@ function Contacts() {
     
 
     // const addContacts = (newContacts) => {
-    //     //console.log(newStudent);
-    //     //postStudent(newStudent);
     //     setContacts((contacts) => [...contacts, newContacts]);
     // }
 
@@ -33,11 +31,12 @@ function Contacts() {
         <div className="center">
         <ul>
         {contacts.map(contact => 
-            <Link to="/specific"><li key={contact.id}>{contact.firstname} {contact.lastname}</li></Link>
+            <Link to={`/contacts/${contact.id}`}><li key={contact.id}>{contact.firstname} {contact.lastname}</li></Link>
             )}
         {/* <Form addContacts={addContacts} /> */}
         </ul>
         </div>
+        <Outlet/>
       </div>
     );
   }

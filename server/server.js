@@ -16,20 +16,25 @@ app.get('/', (req, res) => {
 
 //create the get request
 app.get('/api/contacts', cors(), async (req, res) => {
-    // const contacts = [
-
-    //     { id: 1, firstName: 'Lisa', lastName: 'Lee' },
-    //     { id: 2, firstName: 'Eileen', lastName: 'Long' },
-    //     { id: 3, firstName: 'Fariba', lastName: 'Dako' },
-    //     { id: 4, firstName: 'Cristina', lastName: 'Rodriguez' },
-    //     { id: 5, firstName: 'Andrea', lastName: 'Trejo' },
-    // ];
-    // res.json(contacts);
     try{
         const { rows: contacts } = await db.query('SELECT * FROM contacts');
         res.send(contacts);
     } catch (e){
         return res.status(400).json({e});
+    }
+});
+
+//specific to id
+app.get('/api/contacts/:contactId', cors(), async (req, res) => {
+    try{
+    //req.param what you're getting from your url
+    //after colon specific param in this case contactId
+        const contactId = req.params.contactId;
+        const {rows: contact} = await db.query('SELECT * FROM contacts WHERE id=$1', [contactId]);
+        console.log("contact:", contact);
+        res.send(contact);
+    } catch (e) {
+        return res.send(400).json({e});
     }
 });
 
@@ -39,6 +44,7 @@ app.post('/api/contacts/add', cors(), async (req, res) => {
     console.log([newContact.firstname, newContact.lastname]);
     const result = await db.query(
         'INSERT INTO contacts(firstname, lastname, mobile, email, address, note) VALUES($1, $2, $3, $4, $5, $6) RETURNING *',
+        //$ grabs val from this arr
         [newContact.firstname, newContact.lastname, newContact.mobile, newContact.email, newContact.address, newContact.note]
     );
     console.log(result.rows[0]);

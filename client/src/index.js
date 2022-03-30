@@ -8,15 +8,27 @@ import Form from './components/Form';
 import {Delete} from './components/Delete';
 import { SpecificContact } from './components/SpecificContact';
 import {Edit } from './components/Edit';
+import Contacts from './components/Contacts'
 
 ReactDOM.render(
   <Router>
     <Routes>
-      <Route path='/' element={<App />}/>
+      <Route path='/' element={<App />}>
+        <Route path='/contacts' element={<Contacts />}>
+            <Route path=":contactId" element={<SpecificContact/>}/>
+        </Route>
+        <Route
+        path="*"
+        element={
+          <main style={{ padding: "1rem" }}>
+            <p>There's nothing here!</p>
+          </main>
+          }
+        />
+      </Route>
       <Route path='/add' element={<Form />}/>
-      <Route path='/delete' element={<Delete />}/>
-      <Route path='/specific' element={<SpecificContact />}/>
-      <Route path='/edit' element={<Edit/>}/>
+        <Route path='/delete' element={<Delete />}/>
+        <Route path='/edit' element={<Edit/>}/>
     </Routes>
   </Router>,
 
