@@ -11,7 +11,7 @@ function Contacts() {
         fetch("http://localhost:5001/api/contacts")
         .then((response) => response.json())
         .then(contacts =>{
-                   setContacts(contacts);   
+         setContacts(contacts);   
         })
         
     }, []);
